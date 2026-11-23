@@ -3,54 +3,76 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
 <title>文字 DNA 測驗</title>
-<meta name="description" content="36 題測出你的說話類型，看看你寫字時最容易被寫成 AI 的樣子。">
+<meta name="description" content="36 題測出你是哪一種說話的人，看看你寫字時最容易被寫成 AI 的樣子。">
 <style>
-:root{--bg:#f7f5f0;--card:#ffffff;--ink:#22211e;--sub:#5f5d57;--muted:#8a877f;--line:#e3dfd5;--accent:#1d6b57;--accent-soft:#e3f1ec;--warn-soft:#fbf1e1;--warn-ink:#7a4a0a;--bar:#d9d4c7}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1a18;--card:#252421;--ink:#efece4;--sub:#c2bfb5;--muted:#8f8c84;--line:#3a3833;--accent:#5fc7a4;--accent-soft:#1f3a32;--warn-soft:#3a2d17;--warn-ink:#f3c77a;--bar:#3f3c36}}
-:root[data-theme="dark"]{--bg:#1b1a18;--card:#252421;--ink:#efece4;--sub:#c2bfb5;--muted:#8f8c84;--line:#3a3833;--accent:#5fc7a4;--accent-soft:#1f3a32;--warn-soft:#3a2d17;--warn-ink:#f3c77a;--bar:#3f3c36}
+:root{--bg:#fff7e8;--paper:#ffffff;--ink:#231f1a;--sub:#5d564c;--muted:#8b8276;--coral:#ff6a4d;--yellow:#ffd23f;--teal:#22b8a7;--lilac:#b9a6ff;--line:#231f1a;--soft:#fff1d6}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7;font-size:16px}
-.wrap{max-width:640px;margin:0 auto;padding:24px 16px 64px}
-h1{font-size:26px;line-height:1.35;margin:8px 0 10px;font-weight:600}
-h2{font-size:19px;margin:0 0 8px;font-weight:600}
-.eyebrow{font-size:13px;color:var(--muted);letter-spacing:.04em}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0}
-.sub{color:var(--sub)}
-.small{font-size:13px;color:var(--muted)}
-.btn{display:inline-block;border:0;border-radius:10px;background:var(--accent);color:#fff;font-size:16px;padding:12px 20px;cursor:pointer;font-family:inherit}
-:root[data-theme="dark"] .btn{color:#10231d}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#10231d}}
-.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7;font-size:16px;-webkit-text-size-adjust:100%}
+.wrap{max-width:640px;margin:0 auto;padding:20px 16px 72px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--sub)}
+.brand i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--coral);border:2px solid var(--ink)}
+.hero{display:flex;gap:14px;align-items:center;margin:14px 0 6px}
+.hero svg{flex:0 0 auto}
+h1{font-size:30px;line-height:1.3;margin:0;font-weight:900;letter-spacing:.01em}
+h1 em{font-style:normal;color:var(--coral)}
+.lead{color:var(--sub);margin:10px 0 16px}
+.card{background:var(--paper);border:2.5px solid var(--line);border-radius:18px;padding:16px;margin:16px 0;box-shadow:4px 4px 0 var(--line)}
+.card h2{font-size:18px;margin:0 0 8px;font-weight:900;display:flex;align-items:center;gap:8px}
+.num{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:50%;background:var(--yellow);border:2px solid var(--ink);font-size:14px;font-weight:900}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:420px){.grid{grid-template-columns:1fr}}
+.tile{border:2px solid var(--ink);border-radius:14px;padding:10px 12px;background:var(--soft)}
+.tile b{display:block;font-size:15px}
+.tile b span{color:var(--coral);margin-right:4px}
+.tile small{color:var(--sub);font-size:13px;line-height:1.5;display:block}
+.tile.hot{background:var(--yellow)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:2.5px solid var(--ink);border-radius:14px;background:var(--coral);color:#fff;font-size:17px;font-weight:800;padding:13px 22px;cursor:pointer;font-family:inherit;box-shadow:3px 3px 0 var(--ink);text-decoration:none;transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.btn.alt{background:var(--paper);color:var(--ink)}
+.btn.teal{background:var(--teal)}
 .btn.full{width:100%}
-.btn:disabled{opacity:.45;cursor:default}
+.btn.off{background:#e9e2d4;color:var(--muted);cursor:default;box-shadow:none}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.progress{height:6px;background:var(--bar);border-radius:99px;overflow:hidden;margin:6px 0 18px}
-.progress i{display:block;height:100%;background:var(--accent);width:0;transition:width .2s}
-.tag{display:inline-block;font-size:12px;background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:2px 10px;margin-right:6px}
-.stem{font-size:18px;margin:10px 0 16px}
-.opt{display:block;width:100%;text-align:left;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:14px;margin:10px 0;font-size:16px;font-family:inherit;cursor:pointer;line-height:1.6}
-.opt:hover{border-color:var(--accent)}
-.opt.on{border-color:var(--accent);background:var(--accent-soft)}
-.bar{margin:12px 0}
-.bar .lbl{display:flex;justify-content:space-between;font-size:14px;color:var(--sub)}
-.bar .lbl b{color:var(--ink);font-weight:600}
-.track{position:relative;height:10px;background:var(--bar);border-radius:99px;margin-top:4px}
-.track i{position:absolute;top:-3px;width:16px;height:16px;border-radius:50%;background:var(--accent);transform:translateX(-50%)}
-.track em{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--muted)}
-.type{font-size:28px;font-weight:600;line-height:1.3;margin:6px 0}
-.ai{background:var(--warn-soft);border-color:transparent}
-.ai h2{color:var(--warn-ink)}
+.small{font-size:13px;color:var(--muted)}
+a{color:var(--ink)}
+.qhead{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:700}
+.progress{height:14px;background:var(--paper);border:2px solid var(--ink);border-radius:99px;overflow:hidden;margin:8px 0 16px}
+.progress i{display:block;height:100%;background:var(--teal);width:0;transition:width .25s}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:800;border:2px solid var(--ink);border-radius:99px;padding:1px 10px;background:var(--lilac)}
+.tag.s{background:var(--yellow)}
+.stem{font-size:19px;font-weight:800;margin:12px 0 6px;line-height:1.55}
+.opt{display:block;width:100%;text-align:left;background:var(--paper);color:var(--ink);border:2.5px solid var(--ink);border-radius:14px;padding:13px 14px;margin:10px 0;font-size:16px;font-family:inherit;cursor:pointer;line-height:1.6;box-shadow:3px 3px 0 var(--ink);transition:transform .08s,box-shadow .08s,background .1s}
+.opt:hover{background:var(--soft)}
+.opt.on{background:var(--yellow);transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.typebox{text-align:center;padding:22px 16px}
+.typebox .type{font-size:30px;font-weight:900;line-height:1.3;margin:6px 0 2px}
+.typebox .badge{display:inline-block;font-size:13px;font-weight:800;border:2px solid var(--ink);border-radius:99px;padding:1px 12px;background:var(--yellow);margin-top:4px}
+.typebox p{margin:8px 0 0;color:#3c352c}
+.bar{margin:14px 0}
+.bar .lbl{display:flex;justify-content:space-between;font-size:14px;font-weight:800}
+.track{position:relative;height:16px;background:var(--soft);border:2px solid var(--ink);border-radius:99px;margin:6px 12px 0}
+.track em{position:absolute;left:50%;top:0;bottom:0;border-left:2px dashed var(--muted)}
+.track i{position:absolute;top:50%;width:24px;height:24px;border-radius:50%;border:2.5px solid var(--ink);transform:translate(-50%,-50%)}
+.bar .small{margin-top:6px}
+.ai{background:var(--yellow)}
+.ai h2 .num{background:var(--paper)}
 ul{margin:4px 0;padding-left:20px}
 table{width:100%;border-collapse:collapse;font-size:14px}
-td,th{border-bottom:1px solid var(--line);padding:7px 4px;text-align:left;vertical-align:top}
-th{color:var(--muted);font-weight:500}
-textarea{width:100%;min-height:88px;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:16px;font-family:inherit;background:var(--bg);color:var(--ink);resize:vertical}
-label.q{display:block;font-weight:600;margin:14px 0 6px}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:99px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}
+td,th{border-bottom:2px dashed #d9cfbd;padding:8px 4px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:700}
+textarea{width:100%;min-height:90px;border:2px solid var(--ink);border-radius:12px;padding:10px;font-size:16px;font-family:inherit;background:var(--soft);color:var(--ink);resize:vertical}
+label.q{display:block;font-weight:800;margin:14px 0 6px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:8px 18px;border-radius:99px;font-size:14px;font-weight:700;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}
 .toast.on{opacity:1}
-canvas{width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
-.hidden{display:none}
+canvas{width:100%;height:auto;border-radius:14px;border:2.5px solid var(--ink)}
+.center{text-align:center}
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:28px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media (prefers-reduced-motion:no-preference){.bob{animation:bob 2.4s ease-in-out infinite}}
 </style>
 </head>
 <body>
@@ -58,11 +80,13 @@ canvas{width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
 <div class="toast" id="toast"></div>
 <script>
 const DATA = {"qs": [{"id": "D1", "dim": "D", "obj": "上司", "scene": "不同意", "key": true, "stem": "主管在會議上提了一個你覺得行不通的做法，問大家有沒有意見。", "opts": [{"t": "「這個做法我覺得行不通，時程排不下。」", "v": "1"}, {"t": "「我有個疑慮，時程可能排不下，要不要先算一下？」", "v": "2"}, {"t": "「方向我同意，想確認一下時程，大家覺得來得及嗎？」", "v": "3"}, {"t": "會議上先不講，會後再私下找他聊。", "v": "4"}]}, {"id": "D2", "dim": "D", "obj": "同事", "scene": "請求", "key": false, "stem": "同事答應今天給你的資料還沒來，你明天就要用。", "opts": [{"t": "「資料今天能給我嗎？我明天要用。」", "v": "1"}, {"t": "「資料大概幾點會好？我明天一早要用。」", "v": "2"}, {"t": "「最近很忙吧～那份資料如果有進度，可以先給我看看。」", "v": "3"}, {"t": "先等等，下班前還沒來再說。", "v": "4"}]}, {"id": "D3", "dim": "D", "obj": "下屬", "scene": "糾正", "key": false, "stem": "新人交來的報告，格式錯了好幾處。", "opts": [{"t": "「格式錯了，第 2、5、7 頁照範本改。」", "v": "1"}, {"t": "「整體不錯，有幾個格式要照範本改，我標出來了。」", "v": "2"}, {"t": "「辛苦了！我們有一份範本，下次可以對照看看。」", "v": "3"}, {"t": "自己先改好，之後找機會再跟他提範本的事。", "v": "4"}]}, {"id": "D4", "dim": "D", "obj": "客戶", "scene": "拒絕", "key": true, "stem": "客戶要求加一個合約裡沒有的項目，還希望不另外收費。", "opts": [{"t": "「這不在合約範圍內，要做的話需要另外報價。」", "v": "1"}, {"t": "「這個項目合約沒有包含，我先估個費用給您參考。」", "v": "2"}, {"t": "「我理解這個需求，我回去評估怎麼安排比較好，再跟您說。」", "v": "3"}, {"t": "「收到，我們這邊研究一下。」之後再想辦法。", "v": "4"}]}, {"id": "D5", "dim": "D", "obj": "伴侶", "scene": "抱怨", "key": false, "stem": "另一半又把髒衣服丟在沙發上，這週第三次了。", "opts": [{"t": "「衣服又丟沙發了，拿去洗衣籃。」", "v": "1"}, {"t": "「這週第三次了，我希望你可以直接放洗衣籃。」", "v": "2"}, {"t": "「沙發上的衣服是要洗的嗎？」", "v": "3"}, {"t": "自己先收掉，等他心情好的時候再提。", "v": "4"}]}, {"id": "D6", "dim": "D", "obj": "家人", "scene": "拒絕", "key": false, "stem": "長輩打電話要你這個週末回家吃飯，但你已經跟朋友約好了。", "opts": [{"t": "「這週不行，我已經有約了，下週回去。」", "v": "1"}, {"t": "「這週剛好跟朋友約了，下週回去好不好？」", "v": "2"}, {"t": "「這週喔……我看一下，好像有點事，再跟你說。」", "v": "3"}, {"t": "「好啊，那我看朋友那邊能不能改時間。」", "v": "4"}]}, {"id": "D7", "dim": "D", "obj": "朋友", "scene": "不同意", "key": false, "stem": "朋友興奮地說要報名一個很貴的課程，問你覺得怎樣，但你覺得不值得。", "opts": [{"t": "「我覺得不值得，那個價錢太高了。」", "v": "1"}, {"t": "「先說我覺得有點貴，你有比較過別家嗎？」", "v": "2"}, {"t": "「聽起來不錯耶，你最想從裡面學到什麼？」", "v": "3"}, {"t": "「你開心最重要！」心裡的疑慮先不講。", "v": "4"}]}, {"id": "D8", "dim": "D", "obj": "網路陌生人", "scene": "不同意", "key": false, "stem": "你在別人的貼文底下，看到一則留言內容明顯有錯。", "opts": [{"t": "直接留言指出哪裡錯，附上正確資料。", "v": "1"}, {"t": "留言：「補充一下，這部分我查到的資料不太一樣……」", "v": "2"}, {"t": "留言：「這部分好像有其他說法，有興趣可以查查看。」", "v": "3"}, {"t": "不留言，滑過去。", "v": "4"}]}, {"id": "R1", "dim": "R", "obj": "上司", "scene": "請求", "key": false, "stem": "你想跟主管爭取下個月多一個人手。", "opts": [{"t": "「我算過，現在的工作量比上一季多了四成，一個人做不完。」", "v": "1"}, {"t": "「工作量變多了，照現在的人力會延誤交期，多一個人比較穩。」", "v": "2"}, {"t": "「最近大家都很拚，有點撐不住，多一個人大家能喘口氣。」", "v": "3"}, {"t": "「我真的很擔心團隊有人會累倒，想替大家爭取看看。」", "v": "4"}]}, {"id": "R2", "dim": "R", "obj": "朋友", "scene": "安慰建議", "key": false, "stem": "朋友失戀很難過，問你他是不是哪裡做錯了。", "opts": [{"t": "「我們把事情順一遍，看看哪個環節卡住了。」", "v": "1"}, {"t": "「有些地方也許可以做得更好，但不是全部都是你的錯。」", "v": "2"}, {"t": "「你現在一定很難受，先別急著找錯。」", "v": "3"}, {"t": "「你那時候為他做了好多，我都看在眼裡。」", "v": "4"}]}, {"id": "R3", "dim": "R", "obj": "客戶", "scene": "說服", "key": false, "stem": "客戶在兩個方案間猶豫，你想推薦比較貴的那個。", "opts": [{"t": "「貴的那個每月多兩千，但能省下一個人力，半年就回本。」", "v": "1"}, {"t": "「長期算下來，貴的那個比較划算，我把數字整理給您。」", "v": "2"}, {"t": "「之前選這個方案的客戶，後來都說比較省心。」", "v": "3"}, {"t": "「我自己比較放心推薦這個，因為我知道您很在意出錯。」", "v": "4"}]}, {"id": "R4", "dim": "R", "obj": "伴侶", "scene": "不同意", "key": false, "stem": "另一半想把家裡的車換新，你覺得沒必要。", "opts": [{"t": "「這台才開五年，保養一年不到一萬，現在換不划算。」", "v": "1"}, {"t": "「車還能開，先把錢留著比較保險。」", "v": "2"}, {"t": "「我知道你想開得舒服一點，但現在花大錢我有點不安。」", "v": "3"}, {"t": "「每次講到花大錢我就會緊張，你可以先跟我說你為什麼想換嗎？」", "v": "4"}]}, {"id": "R5", "dim": "R", "obj": "家人", "scene": "說服", "key": false, "stem": "你想說服爸媽去做健康檢查。", "opts": [{"t": "「到了這個年紀有補助，提早發現比較好處理。」", "v": "1"}, {"t": "「做個檢查，有問題早點知道，總比拖著好。」", "v": "2"}, {"t": "「你們健健康康的，我在外面才放心。」", "v": "3"}, {"t": "「想到你們可能不舒服卻沒說，我就睡不好。」", "v": "4"}]}, {"id": "R6", "dim": "R", "obj": "同事", "scene": "被質疑", "key": true, "stem": "同事在群組問你，你負責的部分為什麼拖了兩天。", "opts": [{"t": "「延遲是因為上游資料晚了兩天才到，紀錄我貼在下面。」", "v": "1"}, {"t": "「上游資料晚到，所以順延，新的時間是週四。」", "v": "2"}, {"t": "「讓大家等真的很抱歉，我這兩天也很急。」", "v": "3"}, {"t": "「我知道大家都在等，我心裡很過意不去，週四一定給。」", "v": "4"}]}, {"id": "R7", "dim": "R", "obj": "網路陌生人", "scene": "說服", "key": false, "stem": "網友在討論「下班後該不該回主管訊息」，你想留言說你的看法。", "opts": [{"t": "附上相關規定和調查數字，說明你的立場。", "v": "1"}, {"t": "列出兩三個理由，講清楚你為什麼這樣想。", "v": "2"}, {"t": "講你自己遇過的一次經驗。", "v": "3"}, {"t": "說出你對「下班還被找」的心情，讓有同感的人一起共鳴。", "v": "4"}]}, {"id": "R8", "dim": "R", "obj": "下屬", "scene": "交辦", "key": false, "stem": "你要請團隊成員接一個很趕的案子。", "opts": [{"t": "「這案子三週要交，我拆成四段，你負責第二段。」", "v": "1"}, {"t": "「時間很趕，但做完對明年的預算很有幫助。」", "v": "2"}, {"t": "「我知道最近大家很累，這個案子我會一起扛。」", "v": "3"}, {"t": "「這件事交給你我最放心，我很需要你。」", "v": "4"}]}, {"id": "H1", "dim": "H", "obj": "同事", "scene": "被稱讚", "key": false, "stem": "同事在群組誇你這次簡報做得很好。", "opts": [{"t": "「謝謝，大家一起準備的。」", "v": "1"}, {"t": "「謝謝！這次真的有花時間準備。」", "v": "2"}, {"t": "「謝謝，熬夜換來的，黑眼圈可以作證。」", "v": "3"}, {"t": "「請叫我簡報之神（不要太認真）。」", "v": "4"}]}, {"id": "H2", "dim": "H", "obj": "朋友", "scene": "閒聊", "key": false, "stem": "朋友傳來一張他做菜失敗、燒焦的照片。", "opts": [{"t": "「怎麼了？火太大嗎？」", "v": "1"}, {"t": "「還好嗎？下次火轉小一點。」", "v": "2"}, {"t": "「看起來很有……煙燻風味。」", "v": "3"}, {"t": "「這不是菜，這是考古出土的文物吧。」", "v": "4"}]}, {"id": "H3", "dim": "H", "obj": "上司", "scene": "道歉", "key": true, "stem": "你寄錯檔案給主管，要傳訊息更正。", "opts": [{"t": "「抱歉，剛剛的檔案寄錯了，正確的是這份。」", "v": "1"}, {"t": "「抱歉，剛剛手太快寄錯了，這份才對！」", "v": "2"}, {"t": "「剛剛那份是平行時空的版本，這份才是正確的。」", "v": "3"}, {"t": "「剛剛那份請當作沒看到（遮眼），這份才是正本。」", "v": "4"}]}, {"id": "H4", "dim": "H", "obj": "伴侶", "scene": "小衝突", "key": false, "stem": "你們為了晚餐吃什麼僵持不下，氣氛有點悶。", "opts": [{"t": "「那你決定吧，我都可以。」", "v": "1"}, {"t": "「我們各提一個，用猜拳決定。」", "v": "2"}, {"t": "「不然讓冰箱決定，打開看到什麼就吃什麼。」", "v": "3"}, {"t": "「再僵下去只能吃空氣了，空氣我請客。」", "v": "4"}]}, {"id": "H5", "dim": "H", "obj": "客戶", "scene": "被催促", "key": false, "stem": "客戶等你回覆等了一天，傳來「還在嗎？」", "opts": [{"t": "「抱歉晚回，以下是您問的資料。」", "v": "1"}, {"t": "「抱歉讓您久等了！資料整理好了，請參考。」", "v": "2"}, {"t": "「在的！剛剛被資料淹沒，終於爬出來了。」", "v": "3"}, {"t": "「在！剛去跟報表打了一架，現在帶著戰利品回來。」", "v": "4"}]}, {"id": "H6", "dim": "H", "obj": "家人", "scene": "被念", "key": false, "stem": "長輩在家族群組問你：「怎麼最近都不回家？」", "opts": [{"t": "「最近工作比較忙，下個月回去。」", "v": "1"}, {"t": "「最近比較忙，下個月一定回去，想你們。」", "v": "2"}, {"t": "「我也很想回去，可是工作不放我走。」", "v": "3"}, {"t": "「我在外面努力賺錢，準備回去發紅包啦。」", "v": "4"}]}, {"id": "H7", "dim": "H", "obj": "網路陌生人", "scene": "閒聊", "key": false, "stem": "你看到一則大家在抱怨週一的貼文，想留言。", "opts": [{"t": "「真的，週一總是特別累。」", "v": "1"}, {"t": "「週一最難，撐過去就好。」", "v": "2"}, {"t": "「我的身體已經上班，靈魂還在週六。」", "v": "3"}, {"t": "「建議週一改名叫週六第二集。」", "v": "4"}]}, {"id": "H8", "dim": "H", "obj": "下屬", "scene": "宣布", "key": true, "stem": "你要在團隊群組宣布：這週六要加班。", "opts": [{"t": "「通知：本週六需要加班，時間九點到下午三點。」", "v": "1"}, {"t": "「這週六需要加班，九點到三點，辛苦大家了。」", "v": "2"}, {"t": "「這週六要加班，我知道大家心都碎了。九點到三點，便當我負責。」", "v": "3"}, {"t": "「各位，週六的行程要先改成『公司一日遊』了，九點到三點，便當我請。」", "v": "4"}]}, {"id": "S1", "dim": "S", "obj": "同事", "scene": "被質疑", "key": true, "stem": "開會時，同事說你的提案「根本沒想清楚」。", "opts": [{"t": "「謝謝提醒，我會再想想。」", "v": "1"}, {"t": "「可以說說是哪個部分嗎？我再補充。」", "v": "2"}, {"t": "「哪裡沒想清楚？我可以一項一項說明。」", "v": "3"}, {"t": "「成本、時程、風險都算過了，你有不同的數字，我們可以直接比。」", "v": "4"}]}, {"id": "S2", "dim": "S", "obj": "網路陌生人", "scene": "被質疑", "key": false, "stem": "你的貼文底下，有人留言說你講的完全錯。", "opts": [{"t": "不回，或回「每個人看法不同」。", "v": "1"}, {"t": "「謝謝你的意見，我的想法是這樣……」", "v": "2"}, {"t": "「你說錯的是哪一句？我有附資料來源。」", "v": "3"}, {"t": "把他的論點拆開，一條一條回覆。", "v": "4"}]}, {"id": "S3", "dim": "S", "obj": "客戶", "scene": "被殺價", "key": true, "stem": "客戶說：「別家便宜三成，你們能不能也降？」", "opts": [{"t": "「我回去問問看能不能調。」", "v": "1"}, {"t": "「價格可以聊，我先說明一下我們多做了哪些。」", "v": "2"}, {"t": "「我們的價格包含售後和保固，比的時候要一起算。」", "v": "3"}, {"t": "「便宜三成，那邊少了哪些項目？建議您先問清楚再比。」", "v": "4"}]}, {"id": "S4", "dim": "S", "obj": "上司", "scene": "不公平", "key": false, "stem": "主管在大會上，把你做的成果說成是另一個同事的。", "opts": [{"t": "算了，不想為這種事起衝突。", "v": "1"}, {"t": "私下跟主管說：「下次報告時，可以提一下我負責的部分嗎？」", "v": "2"}, {"t": "私下找主管說清楚：「那個成果是我做的，我希望能被正確記下來。」", "v": "3"}, {"t": "會後當場補充說明，自己負責了哪些部分。", "v": "4"}]}, {"id": "S5", "dim": "S", "obj": "朋友", "scene": "不同意", "key": false, "stem": "朋友很篤定地轉傳一則你知道是假的健康偏方。", "opts": [{"t": "不回，或回個貼圖。", "v": "1"}, {"t": "「這個我好像看過有人說不準，你要不要再查一下？」", "v": "2"}, {"t": "「這則是假的，查核網站有澄清過，連結給你。」", "v": "3"}, {"t": "「這是假的，照做可能有危險，先不要再傳了。」", "v": "4"}]}, {"id": "S6", "dim": "S", "obj": "伴侶", "scene": "被質疑", "key": false, "stem": "吵架時另一半說「你每次都這樣」，但你覺得不是。", "opts": [{"t": "先不辯，等他氣消再說。", "v": "1"}, {"t": "「我知道你很不舒服，但『每次』可能有點不公平。」", "v": "2"}, {"t": "「哪幾次？我們把事情講清楚。」", "v": "3"}, {"t": "「不是每次，上週跟上上週我都有做到，這樣說不公平。」", "v": "4"}]}, {"id": "S7", "dim": "S", "obj": "下屬", "scene": "糾正", "key": false, "stem": "團隊成員第三次錯過期限，還說「最近比較忙」。", "opts": [{"t": "「辛苦了，有困難隨時跟我說。」", "v": "1"}, {"t": "「我理解你忙，下次來不及的話，可以早點告訴我嗎？」", "v": "2"}, {"t": "「這是第三次了，我們需要談一下怎麼避免。」", "v": "3"}, {"t": "「三次了。大家都忙，期限就是期限，下次再延，我得重新分配工作。」", "v": "4"}]}, {"id": "S8", "dim": "S", "obj": "家人", "scene": "被質疑", "key": false, "stem": "長輩說你現在的工作「沒前途」。", "opts": [{"t": "「嗯嗯，我知道你是擔心我。」", "v": "1"}, {"t": "「我知道你擔心，我自己有在規劃，放心。」", "v": "2"}, {"t": "「你覺得哪裡沒前途？我跟你說說我在做什麼。」", "v": "3"}, {"t": "「這是我想清楚的決定，我會負責，希望你相信我。」", "v": "4"}]}, {"id": "P1", "dim": "P", "obj": "上司", "scene": "請求", "key": false, "stem": "主管下班前傳：「明天可以幫我多做一份報表嗎？」", "opts": [{"t": "「好，明天中午前給您。」", "v": "答"}, {"t": "「是哪一份報表？格式跟上次一樣嗎？」", "v": "問"}, {"t": "「明天有點滿，可能要後天。」", "v": "答"}, {"t": "「要什麼時候用？我看一下明天的排程。」", "v": "問"}]}, {"id": "P2", "dim": "P", "obj": "朋友", "scene": "安慰建議", "key": false, "stem": "朋友傳：「我好煩，不知道要不要搬家。」", "opts": [{"t": "「想搬就搬，住得開心最重要。」", "v": "答"}, {"t": "「怎麼了？現在住的哪裡讓你不舒服？」", "v": "問"}, {"t": "「先別急，房子的事慢慢看。」", "v": "答"}, {"t": "「你最煩的是錢、地點，還是別的？」", "v": "問"}]}, {"id": "P3", "dim": "P", "obj": "同事", "scene": "被催促", "key": false, "stem": "同事在群組問：「那件事處理得怎樣了？」", "opts": [{"t": "「還在處理，週四前會好。」", "v": "答"}, {"t": "「你說的是哪一件？報價還是排程？」", "v": "問"}, {"t": "「快好了！」", "v": "答"}, {"t": "「你那邊急著要用嗎？我看要不要先給你一部分。」", "v": "問"}]}, {"id": "P4", "dim": "P", "obj": "客戶", "scene": "被質疑", "key": false, "stem": "客戶說：「你們上次交的東西有問題。」", "opts": [{"t": "「抱歉，我馬上請同事檢查。」", "v": "答"}, {"t": "「方便說是哪個部分嗎？我好確認。」", "v": "問"}, {"t": "「我們交件前都有檢查，我再看一次。」", "v": "答"}, {"t": "「是哪一天交的那批？可以截圖給我嗎？」", "v": "問"}]}], "types": [{"name": "可靠的顧問", "combo": ["直接", "講理", "正經", "溫和"], "one": "一開口就給答案，講得清楚又不讓人有壓力。", "look": "別人問你事情，你通常第一句就給答案，接著補兩三個理由。語氣平穩，很少開玩笑，也很少把話說重。同事卡關的時候，常常第一個想到找你。", "strong": ["對方不用猜你的意思。", "講道理但不咄咄逼人，意見不同時，大家還談得下去。"], "blind": "你講話時語氣是平穩的；打成訊息，「直接＋講理」容易讀起來公事公辦，甚至有點冷。", "who": "伴侶、家人。他們想先被理解，你已經在給解法了。", "try": "回親近的人時，在答案前面先加一句接住感受的話，例如「聽起來真的很累」，再說你的建議。", "ai": "條理分明的「第一、第二、第三」，最後再總結一次，這正是 AI 最標準的格式。改法：把其中一點換成你遇過的一件具體的事，結尾不要再總結。"}, {"name": "一刀見骨的分析師", "combo": ["直接", "講理", "正經", "犀利"], "one": "三句話切到重點，誰在繞圈子你一眼就看穿。", "look": "你習慣先抓問題的核心。說法有漏洞，你會直接點出來，再追問依據。你對事不對人，只是不太會為了氣氛把話收回去。", "strong": ["開會時能很快把討論拉回正題。", "提案裡的漏洞，你常是第一個看到的人。"], "blind": "當面講的時候，對方看得到你只是想把事情弄清楚。文字裡沒有表情，一連串追問容易被讀成懷疑對方的能力。", "who": "下屬、剛認識的客戶。他們可能覺得被挑錯，而不是被幫忙。", "try": "指出問題之前，先寫一句你同意對方的地方；追問時，把「為什麼」換成「我想確認一下」。", "ai": "冒號預告開場（「重點是：」「結論：」）加上整排條列。改法：第一句直接講你的判斷，不預告。"}, {"name": "會講笑話的工程師", "combo": ["直接", "講理", "幽默", "溫和"], "one": "道理講得很硬，但總有一句讓人笑出來。", "look": "你講道理很有條理，中間常冒出一個比喻或一點自嘲。笑點是拿來讓氣氛鬆一點的，很少拿來刺人。", "strong": ["再硬的內容，經過你都變得好入口。", "大家願意聽你講完。"], "blind": "當面說的玩笑有語氣撐著。寫成文字，同一句可能被當成不認真，工作信件裡特別明顯。", "who": "不熟的上司、新客戶。正式場合的一句玩笑，可能被解讀成輕率。", "try": "工作訊息先把重點講完，輕鬆的那句放最後；對不熟的人，玩笑留到第二次往來再用。", "ai": "每段都配一個工整的比喻，看多了就像套路。改法：只留一個你平常真的會講的比喻。"}, {"name": "毒舌評論家", "combo": ["直接", "講理", "幽默", "犀利"], "one": "好笑又好痛，聽完會笑著承認你說得對。", "look": "你很會用一句好笑的話，戳破一個說法裡的矛盾。觀點清楚、論點有料，幽默是你說服人的工具之一。", "strong": ["說服力強，記憶點高。", "在網路討論裡，你的留言很容易被按讚、被轉傳。"], "blind": "好笑和刺人的界線，在文字裡很難拿捏。被你戳到的人看不到你的表情，只看得到那句話。", "who": "伴侶、家人，還有你回覆的那位網友。他們可能只記得被笑，忘了你的論點。", "try": "送出前問自己一句：這個笑點是在笑「這個說法」，還是在笑「這個人」？是後者就改掉。", "ai": "「不是 A，而是 B」這種對比句。一篇最多用一次，其他地方直接講你的判斷。"}, {"name": "真誠的老朋友", "combo": ["直接", "講感受", "正經", "溫和"], "one": "有話直說，但每句都聽得出你是真的在乎。", "look": "你不太拐彎，會講出自己的感受，也會問對方的感受。你很少說重話，出發點通常是「我在乎你」。", "strong": ["讓人覺得安心，像被當成自己人。", "有衝突時，你能把話攤開講，又不傷感情。"], "blind": "在工作上講感受，對方有時會期待你多給一點事實或理由，少了這些，你的意見容易被當成「只是感覺」。", "who": "客戶、比較看重數據的上司。", "try": "工作上說感受時，後面接一個具體的事實，例如：「我有點擔心，因為這週已經延誤兩次了。」", "ai": "「你已經很棒了」「辛苦了」這類誰都能說的安慰句。改法：講一件你知道的、跟他有關的具體小事。"}, {"name": "敢說真話的人", "combo": ["直接", "講感受", "正經", "犀利"], "one": "別人不敢講的你會講，因為你覺得那才是為他好。", "look": "你在意關係，所以更不想粉飾太平。看到不對的事，你會正面說出你的感受和立場，不太等別人先開口。", "strong": ["有你在，問題比較不會被蓋過去。", "朋友知道你說的是真心話。"], "blind": "情緒正強的時候打字，力道往往比你本人當面講還重。", "who": "長輩、上司。他們可能把你的直白聽成不尊重。", "try": "情緒高的時候先打草稿，十分鐘後再看一次；把「你都……」改成「我覺得……」（B-Gottman：用批評的方式開頭，最容易讓對話變糟）。", "ai": "每段都用「我覺得」開頭表態，讀起來一個模子。改法：換掉一半的開頭，直接從事情講起。"}, {"name": "開心果隊長", "combo": ["直接", "講感受", "幽默", "溫和"], "one": "有你在的對話很少冷場，大家都想跟你聊。", "look": "你講話直接又熱情，常用玩笑讓大家放鬆。你的玩笑多半是在拉近距離，很少挖苦人。", "strong": ["冷場的時候，有你就熱起來。", "難開口的話，你能用輕鬆的方式先說出口。"], "blind": "對方需要你認真的時候，習慣性的一句玩笑，可能讓他覺得沒被當一回事。文字裡更明顯，因為他看不到你其實很關心的表情。", "who": "正在難過或生氣的人。", "try": "對方心情不好的時候，第一則訊息先不開玩笑，等他回你，再看氣氛。", "ai": "網路流行語和表情符號放太多，反而像通用的社群文。改法：只用你平常真的會用的梗。"}, {"name": "嘴砲戰神", "combo": ["直接", "講感受", "幽默", "犀利"], "one": "反應超快、句句有梗，吵架很少輸。", "look": "你反應快，不同意的事會正面回，而且回得很有畫面。態度和情緒都很清楚，看你回話很過癮。", "strong": ["臨場反應好，在討論串裡很有存在感。", "你常說出很多人心裡想講、但沒講的話。"], "blind": "打字一快，很容易從反駁對方的說法，滑到嘲諷對方這個人。被截圖之後，前後脈絡也跟著不見。", "who": "被你回的人，還有只看到截圖的人。", "try": "回之前想一下，你是想讓路過的人認同，還是想讓對方難堪？前者留著，後者刪掉。", "ai": "排比三連發、對仗句。改法：留最有力的那一句，其他刪掉。"}, {"name": "耐心的老師", "combo": ["委婉", "講理", "正經", "溫和"], "one": "一步一步帶人懂，再複雜的事都能講明白。", "look": "你習慣先鋪背景，再一步步帶到結論。用詞客氣，會顧對方的面子，也願意花時間解釋。", "strong": ["再複雜的事，你都能講到讓人懂。", "對方不會覺得被逼。"], "blind": "當面講，對方會跟著你的節奏；寫成訊息，鋪陳容易變長，結論被埋在最後，對方可能看到一半就分心了。", "who": "很忙的上司、客戶，看完可能只想問「所以結論是？」", "try": "寫訊息時把結論放第一句，背景放後面，需要的人再往下看。", "ai": "「首先、其次、最後」這類過渡詞，加上結尾把重點再講一遍。改法：拿掉過渡詞，結尾不重複。"}, {"name": "步步為營的辯士", "combo": ["委婉", "講理", "正經", "犀利"], "one": "先鋪好每一塊磚，最後一句讓人無話可說。", "look": "你不急著說「你錯了」。你會先問問題、先擺事實，讓對方一步步走到你的結論。語氣客氣，立場卻很硬，不容易被說動。", "strong": ["說服力強，論點站得住。", "吵架的時候很少說出後悔的話。"], "blind": "一連串的提問寫成文字，容易被讀成在設陷阱。", "who": "伴侶、朋友，可能覺得自己在被審問。", "try": "對親近的人，直接說出你的看法和理由，不用帶著對方走到結論。", "ai": "一連串工整的設問句。改法：問題留一個，其他改成直接說。"}, {"name": "說故事的科普人", "combo": ["委婉", "講理", "幽默", "溫和"], "one": "把硬知識包成故事，聽的人不知不覺就懂了。", "look": "你喜歡用比喻和小故事講道理，讓人邊笑邊懂。你不太正面說「你錯了」，比較會換個角度，讓對方自己想通。", "strong": ["聽你講話很舒服。", "很少有人會跟你吵起來。"], "blind": "故事和比喻一長，訊息就跟著變長，對方可能抓不到你到底要他做什麼。", "who": "需要明確指示的同事、下屬。", "try": "故事講完，補一句「所以我的建議是……」。", "ai": "用「想像一下……」開頭的比喻故事，這是 AI 很愛的開場。改法：用你真的遇過的事開頭。"}, {"name": "反差系說服者", "combo": ["委婉", "講理", "幽默", "犀利"], "one": "平常一本正經，關鍵時刻一句話讓人笑出來，然後就被你說服了。", "look": "你鋪陳很有耐心，到了關鍵處，用一句帶點反諷的話讓對方的說法站不住。你的犀利藏在幽默裡。", "strong": ["能在不撕破臉的情況下贏得討論。", "那一句常被別人記住、轉述。"], "blind": "拐彎的幽默在文字裡很容易被誤讀。對方可能沒看懂，也可能看懂了反而更氣。", "who": "不熟的網友、新客戶。", "try": "對不熟的人，把那句反諷改成直接說出你的論點，幽默留給熟人。", "ai": "刻意的轉折句，例如「但事情沒那麼簡單」。改法：轉折用你自己平常的講法。"}, {"name": "溫柔的傾聽者", "combo": ["委婉", "講感受", "正經", "溫和"], "one": "你說話會先接住對方的情緒，再慢慢講你的看法。", "look": "你很少打斷別人，也很少說重話。你的意見通常說得很柔軟，有時甚至放到最後才說。", "strong": ["很多人願意跟你說心事。", "吵起來的時候，你常是讓大家冷靜下來的那個人。"], "blind": "你真正的意見常常出現得太晚，或包得太厚，對方看完可能根本沒接收到。", "who": "需要你給明確答案的人，例如上司、合作對象。", "try": "給自己定一個規則：接住對方的情緒之後，第二段一定寫出你的看法。", "ai": "「我理解你的感受」這類通用的同理句。改法：用對方說過的一個詞接住他，例如「你說的『好累』，是哪一種累？」"}, {"name": "帶刺的詩人", "combo": ["委婉", "講感受", "正經", "犀利"], "one": "講得很美，但美裡面藏著一根針。", "look": "你很少直白地表達不滿，但話裡常有分量。你會用感受和比喻表達立場，懂的人一聽就知道你在說什麼。", "strong": ["文字很有味道，不滿也講得有分寸。", "你的話讓人記很久。"], "blind": "暗示放進文字裡，對方可能完全沒接收到，也可能接收成另一個意思。", "who": "習慣直來直往的人。", "try": "重要的事，在含蓄的那句後面補一句明講的：「我的意思是，我希望……」", "ai": "抽象形容詞一個接一個、意象太工整。改法：換成一個看得到的畫面。"}, {"name": "暖心說書人", "combo": ["委婉", "講感受", "幽默", "溫和"], "one": "一件小事被你講起來，就變成大家想聽完的故事。", "look": "你講事情有細節、有感受，還有讓人會心一笑的地方。你很少直接下指令，比較常用故事帶出想說的話。", "strong": ["聊天、貼文、致詞，你都能讓人想聽完。", "你講的事，別人會記得畫面。"], "blind": "需要對方做事的時候，請求容易藏在故事裡，不夠明確。", "who": "時間很趕、只想知道重點的人。", "try": "要請別人做事時，把請求寫成獨立的一句放在最後，例如「可以週五前回我嗎？」", "ai": "「那天，……」式的故事開頭，最後再補一句人生道理。改法：故事講完就停，不用下結論。"}, {"name": "戲劇系主角", "combo": ["委婉", "講感受", "幽默", "犀利"], "one": "情緒、轉折、笑點一應俱全，你講話自帶配樂。", "look": "你不太直接說「我不同意」，但會用誇張和反差把態度演出來，讓人很難忽視。", "strong": ["很有感染力，很適合寫貼文、拍影片。", "你的立場，大家都感受得到。"], "blind": "文字裡的誇張容易被當真；對方可能只看到情緒，沒看到你的論點。", "who": "長輩、上司，還有覺得你在影射他的人。", "try": "發出去之前，把整段的重點濃縮成一句白話，確定這句有出現在文字裡。", "ai": "誇張形容詞和驚嘆號滿版，像通用的網路文。改法：誇張只留一處，其他照實講。"}]};
-const SHOP_URL = "";             /* 完整版購買連結，之後換成 Portaly；空白時顯示「即將推出」 */
+const SHOP_URL = "";
 const QUIZ_URL = "https://tryitfirst1013-sys.github.io/text-dna-quiz/";
 const DIMS = {D:["直接","委婉"],R:["講理","講感受"],H:["正經","幽默"],S:["溫和","犀利"]};
+const DCOL = {D:"#ff6a4d",R:"#22b8a7",H:"#ffd23f",S:"#b9a6ff"};
 const POLE = {"直接":"想法直接說出來","委婉":"會先鋪陳、包裝，或留一點空間","講理":"靠事實和理由說服人","講感受":"靠感受、關係和經驗打動人","正經":"語氣認真，玩笑少","幽默":"常用玩笑、比喻或自嘲","溫和":"意見不同時，傾向先緩和","犀利":"意見不同時，願意正面辯，對事不對人"};
 const OBJS = ["上司","同事","下屬","客戶","伴侶","家人","朋友","網路陌生人"];
+const TYPE_COLORS = ["#ffb4a2","#ff8f70","#ffd23f","#ffc46b","#9fe3d6","#5fd0c0","#c6f07a","#9be37a","#cdbfff","#a996ff","#ffd6ec","#ff9fc8","#bfe3ff","#8ccaff","#ffe9a8","#f5b8ff"];
 const OPEN = [
   {k:"朋友閒聊", q:"最近一次跟好朋友聊天笑出來，是在聊什麼？你那時候說了什麼？"},
   {k:"對上司請假", q:"假設你決定下個月請一週的假，去做一件一直很想做的事。你會怎麼跟主管開口？直接寫出你會說的那句。"},
@@ -73,6 +97,28 @@ const store = {get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){re
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
+/* 吉祥物：說話泡泡＋DNA 天線。四條光譜決定樣子：
+   直接＝尾巴直的／委婉＝尾巴捲的；講理＝眼鏡／講感受＝愛心腮紅；
+   正經＝平嘴／幽默＝大笑；溫和＝圓眉／犀利＝斜眉 */
+function mascot(o={}, size=120){
+  const c=o.color||"#ffd23f", ink="#231f1a";
+  const sides=o.sides||{D:0,R:0,H:1,S:0};
+  const tail = sides.D===0
+    ? `<path d="M40 92 L30 112 L56 94" fill="${c}" stroke="${ink}" stroke-width="4" stroke-linejoin="round"/>`
+    : `<path d="M44 93 C40 104 30 108 24 106 C34 112 50 108 58 95" fill="${c}" stroke="${ink}" stroke-width="4" stroke-linejoin="round"/>`;
+  const eyes = sides.R===0
+    ? `<circle cx="47" cy="58" r="9" fill="#fff" stroke="${ink}" stroke-width="3.5"/><circle cx="73" cy="58" r="9" fill="#fff" stroke="${ink}" stroke-width="3.5"/><line x1="56" y1="58" x2="64" y2="58" stroke="${ink}" stroke-width="3.5"/><circle cx="48" cy="59" r="3.2" fill="${ink}"/><circle cx="72" cy="59" r="3.2" fill="${ink}"/>`
+    : `<circle cx="47" cy="58" r="4" fill="${ink}"/><circle cx="73" cy="58" r="4" fill="${ink}"/><path d="M34 70c0-3 4-3 4 0 0-3 4-3 4 0 0 3-4 5-4 5s-4-2-4-5z" fill="#ff6a4d"/><path d="M78 70c0-3 4-3 4 0 0-3 4-3 4 0 0 3-4 5-4 5s-4-2-4-5z" fill="#ff6a4d"/>`;
+  const mouth = sides.H===0
+    ? `<line x1="52" y1="77" x2="68" y2="77" stroke="${ink}" stroke-width="4" stroke-linecap="round"/>`
+    : `<path d="M50 74 Q60 88 70 74 Z" fill="${ink}"/><path d="M55 80 Q60 84 65 80" fill="#ff8f70"/>`;
+  const brows = sides.S===0
+    ? `<path d="M40 45 Q47 41 54 45" fill="none" stroke="${ink}" stroke-width="3.5" stroke-linecap="round"/><path d="M66 45 Q73 41 80 45" fill="none" stroke="${ink}" stroke-width="3.5" stroke-linecap="round"/>`
+    : `<line x1="40" y1="42" x2="54" y2="47" stroke="${ink}" stroke-width="4" stroke-linecap="round"/><line x1="80" y1="42" x2="66" y2="47" stroke="${ink}" stroke-width="4" stroke-linecap="round"/>`;
+  const helix = `<path d="M60 24 C68 18 52 12 60 6" fill="none" stroke="${ink}" stroke-width="3.5" stroke-linecap="round"/><path d="M60 24 C52 18 68 12 60 6" fill="none" stroke="${ink}" stroke-width="3.5" stroke-linecap="round"/><line x1="56" y1="19" x2="64" y2="19" stroke="${ink}" stroke-width="2.5"/><line x1="56" y1="11" x2="64" y2="11" stroke="${ink}" stroke-width="2.5"/><circle cx="60" cy="5" r="3.5" fill="#ff6a4d" stroke="${ink}" stroke-width="2.5"/>`;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 120 120" role="img" aria-label="文字 DNA 小泡泡">${helix}${tail}<rect x="18" y="24" width="84" height="72" rx="30" fill="${c}" stroke="${ink}" stroke-width="4"/>${brows}${eyes}${mouth}</svg>`;
+}
+
 function buildOrder(){
   const by = d => DATA.qs.filter(q=>q.dim===d);
   const D=by("D"),R=by("R"),H=by("H"),S=by("S"),P=by("P");
@@ -82,7 +128,6 @@ function buildOrder(){
 }
 let S = store.get("dna_quiz") || null;
 function save(){ store.set("dna_quiz",S); }
-
 function toast(t){ const el=$("#toast"); el.textContent=t; el.classList.add("on"); setTimeout(()=>el.classList.remove("on"),1600); }
 async function copy(text){
   try{ await navigator.clipboard.writeText(text); toast("已複製"); }
@@ -90,49 +135,50 @@ async function copy(text){
 }
 
 function intro(){
+  const tiles=[["你是哪一種說話的人","16 型之一，加上四條光譜"],["你說話的樣子","強項，和打成文字就不見的地方"],["最容易被寫成 AI 的樣子","AI 幫你寫時最常出現的痕跡和改法",1],["誰比較容易誤會你","對上司、伴侶、朋友各怎麼說話"],["這週試一件事","只練一個點，馬上用得到"],["一張結果卡","存成圖片，貼限動、Threads"]];
   $("#app").innerHTML = `
-  <div class="eyebrow">文字 DNA 測驗</div>
-  <h1>你是哪一種說話的人？</h1>
-  <p class="sub">現在很多文字一看就是 AI 寫的。讓文字不像 AI 的，是只有你會用的說法。先花 6 分鐘，看看你是怎麼說話的。</p>
-  <div class="card">
-    <h2>做完你會拿到</h2>
-    <ul>
-      <li>你的說話類型（16 型之一）和四條光譜</li>
-      <li>你的強項，和寫成文字時容易不見的地方</li>
-      <li><b>你最容易被寫成 AI 的樣子</b>，和改法</li>
-      <li>你對上司、伴侶、朋友……各是怎麼說話的</li>
-      <li>一張可以存下來分享的結果卡</li>
-    </ul>
-  </div>
-  <div class="card">
-    <p style="margin:0">36 題，大約 6 分鐘。每一題選<b>你實際最可能說的那句</b>，不是你覺得最好的那句。四個選項都沒有對錯。</p>
-    <p class="small" style="margin:8px 0 0">身邊沒有題目裡的人（例如沒有下屬），就想像一個最接近的人。這是說話風格的測驗，不是人格或心理診斷。作答只存在你自己的瀏覽器，不會傳到任何地方。</p>
-  </div>
-  <button class="btn full" id="go">${S && S.ans && Object.keys(S.ans).length && !S.done ? "繼續作答" : "開始測驗"}</button>
-  ${S && S.done ? `<p style="text-align:center;margin-top:10px"><a href="#" id="seeRes">看上次的結果</a></p>`:""}`;
-  $("#go").onclick=()=>{ if(!S || S.done){ S={order:buildOrder(),ans:{},i:0,open:{}}; save(); } quiz(); };
-  if($("#seeRes")) $("#seeRes").onclick=e=>{e.preventDefault(); result();};
+  <div class="brand"><i></i>文字 DNA 實驗室</div>
+  <div class="hero"><div class="bob">${mascot({color:"#ffd23f",sides:{D:0,R:1,H:1,S:0}},104)}</div>
+    <h1>測測你是<br><em>哪一種</em>說話的人</h1></div>
+  <p class="lead">現在很多文字一看就是 AI 寫的。讓文字不像 AI 的，是只有你會用的說法。花 6 分鐘，先認識你自己是怎麼說話的。</p>
+  <div class="card"><h2>做完你會拿到</h2>
+    <div class="grid">${tiles.map((t,i)=>`<div class="tile${t[2]?' hot':''}"><b><span>${i+1}</span>${t[0]}</b><small>${t[1]}</small></div>`).join("")}</div></div>
+  <div class="card"><h2><span class="num">!</span>作答小提醒</h2>
+    <p style="margin:0">36 題，大約 6 分鐘。每題選<b>你實際最可能說的那句</b>，不是你覺得最好的那句。四個選項都沒有對錯。</p>
+    <p class="small" style="margin:8px 0 0">身邊沒有題目裡的人（例如沒有下屬），就想像最接近的人。這是說話風格的測驗，不是人格或心理診斷。作答只存在你自己的瀏覽器，不會傳到任何地方。</p></div>
+  <button class="btn full" id="go">${S && S.ans && Object.keys(S.ans).length && !S.done ? "繼續作答 →" : "開始測驗 →"}</button>
+  ${S && S.done ? `<p class="center"><a href="#" id="seeRes">看上次的結果</a></p>`:""}
+  <div class="foot">說話風格測驗・不是人格或心理診斷</div>`;
+  $("#go").onclick=()=>{ if(!S || S.done){ S={order:buildOrder(),ans:{},i:0,open:{}}; save(); } quiz(); window.scrollTo(0,0); };
+  if($("#seeRes")) $("#seeRes").onclick=e=>{e.preventDefault(); result(); window.scrollTo(0,0);};
 }
 
 function quiz(){
   const n=S.order.length, it=S.order[S.i], q=DATA.qs.find(x=>x.id===it.id);
   const picked=S.ans[q.id];
+  const pct=S.i/n;
+  const face = pct<.34?{D:0,R:0,H:0,S:0}:pct<.67?{D:1,R:1,H:0,S:0}:{D:0,R:1,H:1,S:0};
   $("#app").innerHTML = `
-  <div class="row" style="justify-content:space-between"><span class="small">第 ${S.i+1} / ${n} 題</span><span class="small">${S.i>0?'<a href="#" id="back">上一題</a>':''}</span></div>
-  <div class="progress"><i style="width:${S.i/n*100}%"></i></div>
-  <span class="tag">${esc(q.obj)}</span><span class="tag">${esc(q.scene)}</span>
-  <div class="stem">${esc(q.stem)}</div>
-  ${it.shuffle.map(j=>`<button class="opt${picked===j?' on':''}" data-j="${j}">${esc(q.opts[j].t)}</button>`).join("")}
-  <p class="small">選你實際最可能說的那句。</p>`;
+  <div class="qhead"><span>第 ${S.i+1} / ${n} 題</span><span>${S.i>0?'<a href="#" id="back">← 上一題</a>':''}</span></div>
+  <div class="progress"><i style="width:${pct*100}%"></i></div>
+  <div class="card">
+    <div class="row" style="justify-content:space-between;align-items:flex-start;flex-wrap:nowrap">
+      <div class="tags"><span class="tag">${esc(q.obj)}</span><span class="tag s">${esc(q.scene)}</span></div>
+      ${mascot({color:"#ffd23f",sides:face},52)}
+    </div>
+    <div class="stem">${esc(q.stem)}</div>
+    ${it.shuffle.map(j=>`<button class="opt${picked===j?' on':''}" data-j="${j}">${esc(q.opts[j].t)}</button>`).join("")}
+  </div>
+  <p class="small center">選你實際最可能說的那句</p>`;
   document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
     S.ans[q.id]=+b.dataset.j; b.classList.add("on");
-    setTimeout(()=>{ if(S.i<n-1){S.i++; save(); quiz(); window.scrollTo(0,0);} else { S.done=true; save(); result(); window.scrollTo(0,0);} },160);
+    setTimeout(()=>{ if(S.i<n-1){S.i++; save(); quiz(); window.scrollTo(0,0);} else { S.done=true; save(); result(); window.scrollTo(0,0);} },180);
   });
   if($("#back")) $("#back").onclick=e=>{e.preventDefault(); S.i--; save(); quiz();};
 }
 
 function score(){
-  const val = q => { const v=q.opts[S.ans[q.id]].v; return v; };
+  const val = q => q.opts[S.ans[q.id]].v;
   const res={dims:{},objs:{},asker:0};
   for(const d of ["D","R","H","S"]){
     const qs=DATA.qs.filter(q=>q.dim===d);
@@ -150,7 +196,10 @@ function score(){
   res.asker = DATA.qs.filter(q=>q.dim==="P").filter(q=>val(q)==="問").length;
   res.isAsker = res.asker>=3;
   const combo=["D","R","H","S"].map(d=>res.dims[d].side);
-  res.type = DATA.types.find(t=>t.combo.join()===combo.join());
+  res.typeIndex = DATA.types.findIndex(t=>t.combo.join()===combo.join());
+  res.type = DATA.types[res.typeIndex];
+  res.sides = {D:+res.dims.D.right,R:+res.dims.R.right,H:+res.dims.H.right,S:+res.dims.S.right};
+  res.color = TYPE_COLORS[res.typeIndex];
   return res;
 }
 
@@ -165,44 +214,48 @@ function sceneText(r){
 function result(){
   const r=score(), t=r.type, tag=r.isAsker?"・先問型":"";
   const scenes=sceneText(r);
+  let k=0; const N=()=>`<span class="num">${++k}</span>`;
   const bars=["D","R","H","S"].map(d=>{const x=r.dims[d];const [L,R]=DIMS[d];return `
-    <div class="bar"><div class="lbl"><span><b>${L}</b> ${x.leftPct}%</span><span>${100-x.leftPct}% <b>${R}</b></span></div>
-    <div class="track"><em></em><i style="left:${100-x.leftPct}%"></i></div>
+    <div class="bar"><div class="lbl"><span>${L} ${x.leftPct}%</span><span>${100-x.leftPct}% ${R}</span></div>
+    <div class="track"><em></em><i style="left:${100-x.leftPct}%;background:${DCOL[d]}"></i></div>
     <div class="small">${x.band?`看場合：平常兩邊都有，壓力大的時候偏${x.side}（${POLE[x.side]}）`:`你偏${x.side}：${POLE[x.side]}`}</div></div>`}).join("");
-  const objRows=OBJS.map(o=>`<tr><td>${o}</td><td>${["D","R","H","S"].map(d=>r.objs[o][d]).join("・")}</td></tr>`).join("");
+  const objRows=OBJS.map(o=>`<tr><td><b>${o}</b></td><td>${["D","R","H","S"].map(d=>r.objs[o][d]).join("・")}</td></tr>`).join("");
   $("#app").innerHTML = `
-  <div class="eyebrow">你的文字 DNA</div>
-  <div class="type">${esc(t.name)}${tag}</div>
-  <p class="sub" style="margin-top:0">${esc(t.one)}</p>
-  <div class="card">${bars}</div>
-  <div class="card"><h2>你說話的樣子</h2><p style="margin:0">${esc(t.look)}</p></div>
-  <div class="card"><h2>你的強項</h2><ul>${t.strong.map(s=>`<li>${esc(s)}</li>`).join("")}</ul></div>
-  <div class="card"><h2>寫成文字時，容易不見的</h2><p style="margin:0">${esc(t.blind)}</p></div>
-  <div class="card ai"><h2>你最容易被寫成 AI 的樣子</h2><p style="margin:0">${esc(t.ai)}</p>
-    <p class="small" style="margin:8px 0 0">叫 AI 幫你寫的時候，最容易出現這種痕跡。這是依每一型的說話特性推出來的提醒，不是研究數據。</p></div>
-  <div class="card"><h2>誰比較容易誤會你</h2><p style="margin:0">${esc(t.who)}</p>
+  <div class="brand"><i></i>你的文字 DNA</div>
+  <div class="card typebox" style="background:${r.color}">
+    <div class="bob" style="display:inline-block">${mascot({color:"#fff7e8",sides:r.sides},130)}</div>
+    <div class="type">${esc(t.name)}</div>
+    ${r.isAsker?`<span class="badge">先問型</span>`:""}
+    <p>${esc(t.one)}</p></div>
+  <div class="card"><h2>${N()}你的四條光譜</h2>${bars}</div>
+  <div class="card"><h2>${N()}你說話的樣子</h2><p style="margin:0">${esc(t.look)}</p></div>
+  <div class="card"><h2>${N()}你的強項</h2><ul>${t.strong.map(s=>`<li>${esc(s)}</li>`).join("")}</ul></div>
+  <div class="card"><h2>${N()}寫成文字時，容易不見的</h2><p style="margin:0">${esc(t.blind)}</p></div>
+  <div class="card ai"><h2>${N()}你最容易被寫成 AI 的樣子</h2><p style="margin:0">${esc(t.ai)}</p>
+    <p class="small" style="margin:8px 0 0;color:#5d4a00">叫 AI 幫你寫的時候，最容易出現這種痕跡。這是依每一型的說話特性推出來的提醒，不是研究數據。</p></div>
+  <div class="card"><h2>${N()}誰比較容易誤會你</h2><p style="margin:0">${esc(t.who)}</p>
     <p class="small" style="margin:8px 0 0">對方地位比你高、跟你比較不熟，話通常要說得更委婉。這不是說你跟這些人處不好。</p></div>
-  <div class="card"><h2>這週試一件事</h2><p style="margin:0">${esc(t.try)}</p></div>
-  ${r.isAsker?`<div class="card"><h2>你是先問型</h2><p style="margin:0">你回答之前，常會先問清楚對方要什麼，所以很少答非所問。要注意的是，文字裡的提問有時會被讀成推託。在問題前加半句說明，對方就懂了：「我想確認一下，你要的是 A 還是 B？」</p></div>`:""}
-  ${scenes.length?`<div class="card"><h2>你會看場合</h2>${scenes.map(s=>`<p style="margin:0 0 6px">${esc(s)}</p>`).join("")}<p class="small" style="margin:6px 0 0">對不同的人換一套講法很正常。你的類型是照壓力比較大的場合怎麼反應來歸的。</p></div>`:""}
-  <div class="card"><h2>你對不同的人怎麼說話</h2><table><tr><th>對象</th><th>傾向</th></tr>${objRows}</table><p class="small" style="margin:8px 0 0">初步結果：每一格只有一題。</p></div>
+  <div class="card"><h2>${N()}這週試一件事</h2><p style="margin:0">${esc(t.try)}</p></div>
+  ${r.isAsker?`<div class="card"><h2>${N()}你是先問型</h2><p style="margin:0">你回答之前，常會先問清楚對方要什麼，所以很少答非所問。要注意的是，文字裡的提問有時會被讀成推託。在問題前加半句說明，對方就懂了：「我想確認一下，你要的是 A 還是 B？」</p></div>`:""}
+  ${scenes.length?`<div class="card"><h2>${N()}你會看場合</h2>${scenes.map(s=>`<p style="margin:0 0 6px">${esc(s)}</p>`).join("")}<p class="small" style="margin:6px 0 0">對不同的人換一套講法很正常。你的類型是照壓力比較大的場合怎麼反應來歸的。</p></div>`:""}
+  <div class="card"><h2>${N()}你對不同的人怎麼說話</h2><table><tr><th>對象</th><th>傾向</th></tr>${objRows}</table><p class="small" style="margin:8px 0 0">初步結果：每一格只有一題。</p></div>
 
-  <div class="card"><h2>你的結果卡</h2><canvas id="cv" width="1080" height="1350"></canvas>
-    <div class="row" style="margin-top:10px"><button class="btn" id="dl">存成圖片</button><button class="btn ghost" id="share">複製分享文字</button></div></div>
+  <div class="card"><h2>${N()}你的結果卡</h2><canvas id="cv" width="1080" height="1350"></canvas>
+    <div class="row" style="margin-top:12px"><button class="btn" id="dl">存成圖片</button><button class="btn alt" id="share">複製分享文字</button></div></div>
 
-  <div class="card"><h2>想看 AI 用你的口吻回訊息？</h2>
+  <div class="card" style="background:#e6faf6"><h2>${N()}想看 AI 用你的口吻回訊息？</h2>
     <p style="margin:0">這份報告看的是你偏哪一型；你的用詞、口頭禪、回話的順序，選擇題測不出來，而這些正是讓文字不像 AI 的關鍵。再答 4 題，複製一段文字貼到你自己的 Claude，就能看到示範。</p>
     <p class="small">手機可以按鍵盤上的麥克風用講的。照你平常說話的樣子，不用修飾。第 2–4 題是假設的情境。</p>
     ${OPEN.map((o,i)=>`<label class="q" for="op${i}">${i+1}. ${o.q}</label><textarea id="op${i}">${esc((S.open||{})[i]||"")}</textarea>`).join("")}
-    <button class="btn full" id="cpClaude" style="margin-top:14px">複製，貼到我的 Claude</button>
+    <button class="btn teal full" id="cpClaude" style="margin-top:14px">複製，貼到我的 Claude</button>
     <p class="small">文字只在你的瀏覽器裡組出來，按了才複製，不會送到任何地方。</p></div>
 
-  <div class="card"><h2>想要每種場合都用你的口吻寫，不像 AI 寫的？</h2>
-    <p style="margin:0">完整版會幫你建完整的文字 DNA：回難回的訊息、寫 email、貼文、文章、準備當面談都能用。每一則送出前都照 AI 痕跡清單檢查，長文附自測連結，越用越像你。</p>
-    <div class="row" style="margin-top:12px">${SHOP_URL?`<a class="btn" href="${SHOP_URL}">了解完整版</a>`:`<span class="btn" style="opacity:.55;cursor:default">完整版即將推出</span>`}<button class="btn ghost" id="cpPro">已經買了：複製給完整版</button></div></div>
+  <div class="card" style="background:#ffe3dc"><h2>${N()}想讓每種場合都寫得像你、不像 AI？</h2>
+    <p style="margin:0">完整版會請你按麥克風、用講的回答幾題，建出你自己的說話輪廓。之後回難回的訊息、寫 email、貼文、文章、準備當面談都能用；每一則送出前都照 AI 痕跡清單檢查，越用越像你。</p>
+    <div class="row" style="margin-top:12px">${SHOP_URL?`<a class="btn" href="${SHOP_URL}">了解完整版</a>`:`<span class="btn off">完整版即將推出</span>`}<button class="btn alt" id="cpPro">已經買了：複製給完整版</button></div></div>
 
-  <p class="small">這是說話風格的測驗，不是人格或心理診斷。題目是本測驗自己設計的。</p>
-  <p style="text-align:center"><a href="#" id="redo">重新測一次</a></p>`;
+  <p class="center"><a href="#" id="redo">重新測一次</a></p>
+  <div class="foot">說話風格測驗・不是人格或心理診斷・題目由本測驗自行設計</div>`;
 
   OPEN.forEach((_,i)=>$("#op"+i).oninput=e=>{S.open=S.open||{};S.open[i]=e.target.value;save();});
   const header = () => {
@@ -241,40 +294,51 @@ ${answers()}
 光譜：${h.pct}（百分比是偏左端的程度）
 看場合：${h.scene}
 對不同的人：${OBJS.map(o=>`${o==="網路陌生人"?"網路":o} ${["D","R","H","S"].map(x=>r.objs[o][x]).join("・")}`).join("｜")}
-開放題（有答才有；第 2–4 題是假設情境）：
+開放題（有答才有；在網頁上打字的）：
 ${answers()}
 測驗日期：${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}
 請接著幫我建完整的文字 DNA。`);
   };
   $("#share").onclick=()=>copy(`我的文字 DNA 是「${t.name}${tag}」：${t.one}\n你是哪一種說話的人？${QUIZ_URL}`);
   $("#redo").onclick=e=>{e.preventDefault(); store.del("dna_quiz"); S=null; intro(); window.scrollTo(0,0);};
-  drawCard(r,t,tag);
+  drawCard(r,t);
   $("#dl").onclick=()=>{ const a=document.createElement("a"); a.download=`我的文字DNA_${t.name}.png`; a.href=$("#cv").toDataURL("image/png"); a.click(); };
 }
 
-function wrapText(ctx,text,x,y,maxW,lh){
-  let line=""; for(const ch of text){ const test=line+ch; if(ctx.measureText(test).width>maxW && line && !"，。、？！：；）」…".includes(ch)){ ctx.fillText(line,x,y); line=ch; y+=lh; } else line=test; }
-  if(line) ctx.fillText(line,x,y); return y+lh;
+function wrapText(ctx,text,x,y,maxW,lh,center){
+  const lines=[]; let line="";
+  for(const ch of text){ const test=line+ch; if(ctx.measureText(test).width>maxW && line && !"，。、？！：；）」…".includes(ch)){ lines.push(line); line=ch; } else line=test; }
+  if(line) lines.push(line);
+  for(const l of lines){ ctx.fillText(l, center?x-ctx.measureText(l).width/2:x, y); y+=lh; }
+  return y;
 }
-function drawCard(r,t,tag){
-  const c=$("#cv"), x=c.getContext("2d"), F='"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif';
-  x.fillStyle="#f7f5f0"; x.fillRect(0,0,1080,1350);
-  x.fillStyle="#1d6b57"; x.fillRect(0,0,1080,16);
-  x.fillStyle="#8a877f"; x.font=`40px ${F}`; x.fillText("我的文字 DNA",90,150);
-  x.fillStyle="#22211e"; x.font=`600 84px ${F}`; let y=wrapText(x,t.name,90,270,900,100);
-  if(tag){ x.fillStyle="#1d6b57"; x.font=`500 48px ${F}`; x.fillText("先問型",90,y); y+=70; }
-  x.fillStyle="#5f5d57"; x.font=`44px ${F}`; y=wrapText(x,t.one,90,y+20,900,66);
-  y+=50;
-  for(const d of ["D","R","H","S"]){
-    const [L,R]=DIMS[d], p=r.dims[d].leftPct;
-    x.fillStyle="#22211e"; x.font=`500 40px ${F}`; x.fillText(L,90,y); const rw=x.measureText(R).width; x.fillText(R,990-rw,y);
-    x.fillStyle="#d9d4c7"; x.beginPath(); x.roundRect(90,y+24,900,18,9); x.fill();
-    x.fillStyle="#1d6b57"; x.beginPath(); x.arc(90+900*(100-p)/100,y+33,20,0,Math.PI*2); x.fill();
-    y+=130;
-  }
-  x.fillStyle="#22211e"; x.font=`500 40px ${F}`; x.fillText("你是哪一種說話的人？",90,1210);
-  x.fillStyle="#1d6b57"; x.font=`36px ${F}`; x.fillText(QUIZ_URL,90,1262);
-  x.fillStyle="#8a877f"; x.font=`28px ${F}`; x.fillText("說話風格測驗，不是人格診斷",90,1312);
+function rr(x,X,Y,W,H,R){ x.beginPath(); x.moveTo(X+R,Y); x.arcTo(X+W,Y,X+W,Y+H,R); x.arcTo(X+W,Y+H,X,Y+H,R); x.arcTo(X,Y+H,X,Y,R); x.arcTo(X,Y,X+W,Y,R); x.closePath(); }
+function drawCard(r,t){
+  const c=$("#cv"), x=c.getContext("2d"), F='"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif', ink="#231f1a";
+  const paint=(img)=>{
+    x.fillStyle="#fff7e8"; x.fillRect(0,0,1080,1350);
+    x.fillStyle=ink; rr(x,66,66,960,1230,48); x.fill();
+    x.fillStyle=r.color; rr(x,54,54,960,1230,48); x.fill(); x.lineWidth=7; x.strokeStyle=ink; x.stroke();
+    x.fillStyle=ink; x.font=`700 38px ${F}`; x.fillText("我的文字 DNA",110,140);
+    if(img) x.drawImage(img,390,170,300,300);
+    x.fillStyle=ink; x.font=`900 86px ${F}`; let y=wrapText(x,t.name,540,560,840,100,true);
+    if(r.isAsker){ x.font=`800 40px ${F}`; const w=x.measureText("先問型").width+48; x.fillStyle="#ffd23f"; rr(x,540-w/2,y-46,w,64,32); x.fill(); x.lineWidth=4; x.strokeStyle=ink; x.stroke(); x.fillStyle=ink; x.fillText("先問型",540-w/2+24,y); y+=60; }
+    x.fillStyle="#3c352c"; x.font=`500 42px ${F}`; y=wrapText(x,t.one,540,y+40,820,62,true);
+    y=Math.max(y+20,800); const gap=Math.min(88,(1140-y)/4);
+    for(const d of ["D","R","H","S"]){
+      const [L,R]=DIMS[d], p=r.dims[d].leftPct;
+      x.fillStyle=ink; x.font=`800 36px ${F}`; x.fillText(L,120,y); const rw=x.measureText(R).width; x.fillText(R,960-rw,y);
+      x.fillStyle="#fff7e8"; rr(x,120,y+18,840,26,13); x.fill(); x.lineWidth=4; x.strokeStyle=ink; x.stroke();
+      x.beginPath(); x.arc(120+840*(100-p)/100,y+31,22,0,Math.PI*2); x.fillStyle=DCOL[d]; x.fill(); x.lineWidth=5; x.stroke();
+      y+=gap;
+    }
+    x.fillStyle=ink; x.font=`800 36px ${F}`; x.fillText("你是哪一種說話的人？",110,1212);
+    x.font=`500 26px ${F}`; x.fillText(QUIZ_URL.replace("https://",""),110,1254);
+  };
+  paint(null);
+  const svg=mascot({color:"#fff7e8",sides:r.sides},300);
+  const img=new Image(); img.onload=()=>paint(img);
+  img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg.replace("<svg ",'<svg xmlns="http://www.w3.org/2000/svg" '));
 }
 
 if(S && S.done) result(); else intro();
