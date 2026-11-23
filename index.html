@@ -241,7 +241,7 @@ function result(){
   <div class="card"><h2>${N()}你對不同的人怎麼說話</h2><table><tr><th>對象</th><th>傾向</th></tr>${objRows}</table><p class="small" style="margin:8px 0 0">初步結果：每一格只有一題。</p></div>
 
   <div class="card"><h2>${N()}你的結果卡</h2><canvas id="cv" width="1080" height="1350"></canvas>
-    <div class="row" style="margin-top:12px"><button class="btn" id="dl">存成圖片</button><button class="btn alt" id="share">複製分享文字</button></div></div>
+    <div class="row" style="margin-top:12px"><button class="btn" id="dl">存成圖片</button><button class="btn alt" id="share">複製分享文字</button></div><p class="small" style="margin:8px 0 0">分享文字是貼社群用的。要給完整版的，請用最下面「複製給完整版」那顆按鈕。</p></div>
 
   <div class="card" style="background:#e6faf6"><h2>${N()}想看 AI 用你的口吻回訊息？</h2>
     <p style="margin:0">這份報告看的是你偏哪一型；你的用詞、口頭禪、回話的順序，選擇題測不出來，而這些正是讓文字不像 AI 的關鍵。再答 4 題，複製一段文字貼到你自己的 Claude，就能看到示範。</p>
@@ -252,7 +252,11 @@ function result(){
 
   <div class="card" style="background:#ffe3dc"><h2>${N()}想讓每種場合都寫得像你、不像 AI？</h2>
     <p style="margin:0">完整版會請你按麥克風、用講的回答幾題，建出你自己的說話輪廓。之後回難回的訊息、寫 email、貼文、文章、準備當面談都能用；每一則送出前都照 AI 痕跡清單檢查，越用越像你。</p>
-    <div class="row" style="margin-top:12px">${SHOP_URL?`<a class="btn" href="${SHOP_URL}">了解完整版</a>`:`<span class="btn off">完整版即將推出</span>`}<button class="btn alt" id="cpPro">已經買了：複製給完整版</button></div></div>
+    <div class="row" style="margin-top:12px">${SHOP_URL?`<a class="btn" href="${SHOP_URL}">了解完整版</a>`:`<span class="btn off">完整版即將推出</span>`}</div>
+    <div style="margin-top:14px;padding:12px;border:2px dashed var(--ink);border-radius:12px;background:#fff">
+      <b>已經裝好完整版了？</b>
+      <p style="margin:4px 0 10px">按下面的按鈕，到「我的文字DNA」專案開新對話，直接貼上。這段有你的四條光譜和每一題的傾向，完整版才接得上。</p>
+      <button class="btn full" id="cpPro">複製給完整版</button></div></div>
 
   <p class="center"><a href="#" id="redo">重新測一次</a></p>
   <div class="foot">說話風格測驗・不是人格或心理診斷・題目由本測驗自行設計</div>`;
@@ -289,6 +293,7 @@ ${answers()}
   };
   $("#cpPro").onclick=()=>{
     const h=header(); const d=new Date();
+    setTimeout(()=>toast("已複製，到完整版的新對話貼上"),50);
     copy(`【文字DNA 網頁測驗結果】
 類型：${h.type}
 光譜：${h.pct}（百分比是偏左端的程度）
